@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// faltam 2,3,4 e as validacoes
-// Verificar o ID
+// faltam 7, 8 e as validacoes
+
 struct endereco {
   char estado[10], cidade[10], rua[10], cep[10];
 };
@@ -14,7 +14,7 @@ struct cadastro{
   struct endereco end;
 };
 
-struct cadastro cad[3], cad_Backup[3];
+struct cadastro cad[10];
 void Menu();
 void incluirUsuario();
 void imprimir();
@@ -27,6 +27,7 @@ int j=0;
 
 int main() {
   int opcao, sair, qtdCadastros;
+  struct cadastro cad_Backup[10];
 
   do {
     Menu();
@@ -54,13 +55,10 @@ int main() {
     imprimir();
     break;
     case 7:
-    cad_Backup[j]=cad[j];
-    qtdCadastros=j;
+    cad_Backup[10]=cad[10];
     break;
     case 8:
-    cad[qtdCadastros]=cad_Backup[qtdCadastros];
-    j=qtdCadastros;
-
+    cad[10]=cad_Backup[10];
     break;
     }
   } while(opcao != 9); // corrigir para menor que mil
@@ -145,7 +143,7 @@ void incluirUsuario(){
 }
 
 void imprimir(){
-  char sair;
+
   for (int i=0; i < j; i++){
     if (cad[i].id > 0) { // Nao imprimi os cadastrados excluidos
       printf("Usuario: %i\n", cad[i].id);
@@ -158,8 +156,6 @@ void imprimir(){
       printf("estado: %s\n\n",cad[i].end.cep);
     }
   }
-  printf("\n para sair Digite s");
-  scanf("%c", &sair);
   system("pause");
   system("cls");
 }
@@ -201,54 +197,19 @@ void buscarEmail() {
 }
 
 void BuscarID(){
-  int esquerda, direita, meio, idBusca, cont, j, i, aux;
-  char repetir, auxS[30], limpar;
+  int esquerda, direita, meio, idBusca, qtdCadastros, k, i, id_n_encontrado;
+  struct cadastro aux_cad;
+  qtdCadastros=j;
   esquerda=0;
   direita=j;
-  cont=j;
 
-  for (j = 0; j < cont-1; j++){
-    for (i = 0; i < cont-1; i++){
+  for (k = 0; k < qtdCadastros-1; k++){
+    for (i = 0; i < qtdCadastros-1; i++){
       if (cad[i].id > cad[i+1].id){
-        aux = cad[i].id;
-        cad[i].id = cad[i+1].id;
-        cad[i+1].id = aux;
 
-        strcpy(auxS,cad[i].nome);
-        strcpy(cad[i].nome,cad[i+1].nome);
-        strcpy(cad[i+1].nome,auxS);
-
-        strcpy(auxS,cad[i].email);
-        strcpy(cad[i].email,cad[i+1].email);
-        strcpy(cad[i+1].email,auxS);
-
-        strcpy(auxS,cad[i].sexo);
-        strcpy(cad[i].sexo,cad[i+1].sexo);
-        strcpy(cad[i+1].sexo,auxS);
-
-        strcpy(auxS,cad[i].end.estado);
-        strcpy(cad[i].end.estado,cad[i+1].end.estado);
-        strcpy(cad[i+1].end.estado,auxS);
-
-        strcpy(auxS,cad[i].end.cidade);
-        strcpy(cad[i].end.cidade,cad[i+1].end.cidade);
-        strcpy(cad[i+1].end.cidade,auxS);
-
-        strcpy(auxS,cad[i].end.rua);
-        strcpy(cad[i].end.rua,cad[i+1].end.rua);
-        strcpy(cad[i+1].end.rua,auxS);
-
-        strcpy(auxS,cad[i].end.cep);
-        strcpy(cad[i].end.cep,cad[i+1].end.cep);
-        strcpy(cad[i+1].end.cep,auxS);
-
-        aux = cad[i].altura;
-        cad[i].altura = cad[i+1].altura;
-        cad[i+1].altura = aux;
-
-      /*  aux = vacinaG[i];
-        vacinaG[i] = vacinaG[i+1];
-        vacinaG[i+1] = aux;*/
+        aux_cad = cad[i];
+        cad[i]= cad[i+1];
+        cad[i+1]= aux_cad;
       }
     }
   }
@@ -256,22 +217,21 @@ void BuscarID(){
   printf("Digite o ID: \n");
   scanf("%d", &idBusca);
 
-  do {
+  while(esquerda<=direita) {
    meio=(esquerda+direita)/2;
-
    if(cad[meio].id==idBusca){
-     fflush(stdin);
-     printf("Usuario: %i\n", cad[i].id);
-     printf("Nome: %s\n",cad[i].nome);
-     printf("Email: %s\n", cad[i].email);
-     printf("Sexo: %s\n", cad[i].sexo);
-     printf("estado: %s\n",cad[i].end.estado);
-     printf("estado: %s\n",cad[i].end.cidade);
-     printf("estado: %s\n",cad[i].end.rua);
-     printf("estado: %s\n\n",cad[i].end.cep);
-     printf("Altura: %.2f\n", cad[i].altura);
+     id_n_encontrado=0;
+     printf("Usuario: %i\n", cad[meio].id);
+     printf("Nome: %s\n",cad[meio].nome);
+     printf("Email: %s\n", cad[meio].email);
+     printf("Sexo: %s\n", cad[meio].sexo);
+     printf("Estado: %s\n",cad[meio].end.estado);
+     printf("Cidade: %s\n",cad[meio].end.cidade);
+     printf("Rua: %s\n",cad[meio].end.rua);
+     printf("CEP: %s\n\n",cad[meio].end.cep);
+     printf("Altura: %.2f\n", cad[meio].altura);
      printf("Vacinou: ");
- /*    switch (cad[i].vacina) {
+ /*    switch (cad[meio].vacina) {
        case 1:
        printf("Sim\n");
        break;
@@ -281,24 +241,17 @@ void BuscarID(){
      }*/
 
      }
-     system("pause");
-     system("cls");
-     repetir='N';
-
-   if(cad[i].id>idBusca){
+   if(cad[meio].id>idBusca)
      direita=meio-1;
-   }
-   else{
+   else
      esquerda=meio+1;
-   }
- }while(esquerda<=direita);
+ }
 
-  if (repetir!='N') {
-    printf("ID nao encotrado!\n");
-    printf("Digite 1 para sair!\n");
-    scanf("%c", &limpar);
-    system("cls");
-  }
+ if (id_n_encontrado!=0)
+  printf("ID nao encotrado!\n\n");
+
+  system("pause");
+  system("cls");
 }
 
 void editar(){
