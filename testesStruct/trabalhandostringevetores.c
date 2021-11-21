@@ -12,7 +12,7 @@ void menu();
 struct endereco adicionar(struct endereco *end);
 void imprimir(struct endereco *end);
 
-int j;
+int j=0;
 
 int main() {
   int opcao, i, qtdBackup;
@@ -27,10 +27,10 @@ int main() {
     switch (opcao) {
       case 1:
       fflush(stdin);
-      end[j]=adicionar(&end);
+      adicionar(end);
       break;
       case 2:
-      imprimir(&end);
+      imprimir(end);
       break;
       case 3:
       qtdBackup=j;
@@ -42,7 +42,7 @@ int main() {
       for(i=0; i < qtdBackup; i++){
         end[i]=endBackup[i];
       }
-
+      j=qtdBackup;
       break;
     }
   } while(opcao!=9);
@@ -60,11 +60,11 @@ void menu(){
 struct endereco adicionar(struct endereco *end){
   printf("Estado: \n");
   fflush(stdin);
-  gets(end->estado);
+  gets(end[j].estado);
   printf("cidade: \n");
-  gets(end->cidade);
+  gets(end[j].cidade);
   printf("bairro: \n");
-  gets(end->bairro);
+  gets(end[j].bairro);
   system("cls");
   j++;
   return *end;

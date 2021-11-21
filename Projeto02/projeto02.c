@@ -4,7 +4,7 @@
 // faltam 7, 8 e as validacoes
 
 struct endereco {
-  char estado[10], cidade[10], rua[10], cep[10];
+  char estado[30], cidade[30], rua[30], cep[30];
 };
 
 struct cadastro{
@@ -14,20 +14,21 @@ struct cadastro{
   struct endereco end;
 };
 
-struct cadastro cad[10];
 void Menu();
-void incluirUsuario();
-void imprimir();
-void buscarEmail();
-void BuscarID();
-void editar();
-void Excluir();
+struct cadastro incluirUsuario(struct cadastro *incluir);
+void imprimir(struct cadastro *cad);
+void buscarEmail(struct cadastro *cad);
+void BuscarID(struct cadastro *cad);
+void editar(struct cadastro *cad);
+void Excluir(struct cadastro *cad);
+char* validarSexo(char*sexoValido);
+void substituirExcluido(struct cadastro *incluir);
 
 int j=0;
 
 int main() {
-  int opcao, sair, qtdCadastros;
-  struct cadastro cad_Backup[10];
+  struct cadastro cad[10], cad_backup[10];
+  int opcao, qtdCadastros_backup, qtdCadastros=0;
 
   do {
     Menu();
@@ -37,28 +38,34 @@ int main() {
 
     switch (opcao) {
     case 1:
-    incluirUsuario();
+    if (cad[0].id<0){
+      substituirExcluido(cad);
+    }
+    else{
+      cad[j]=incluirUsuario(cad);
+      j++;
+    }
     break;
     case 2:
-    editar();
+    editar(cad);
     break;
     case 3:
-    Excluir();
+    Excluir(cad);
     break;
     case 4:
-    BuscarID();
+    BuscarID(cad);
     break;
     case 5:
-    buscarEmail();
+    buscarEmail(cad);
     break;
     case 6:
-    imprimir();
+    imprimir(cad);
     break;
     case 7:
-    cad_Backup[10]=cad[10];
+
     break;
     case 8:
-    cad[10]=cad_Backup[10];
+
     break;
     }
   } while(opcao != 9); // corrigir para menor que mil
@@ -67,100 +74,89 @@ int main() {
 }
 
 void Menu(){
-  printf("1-Incluir usuario;\n");
-  printf("2-Editar usuario;\n");
-  printf("3-Excluir usuario;\n");
-  printf("4-Buscar usuario pelo ID;\n");
-  printf("5-Buscar usuario pelo email;\n");
-  printf("6-Imprimir todos usuarios;\n");
-  printf("7-Fazer backup de usuarios cadastrados;\n");
-  printf("8-Restaurar dados;\n");
-  printf("\nEscolha uma opcao:\n ");
+  printf(" ______________________________________\n");
+  printf("|________|CADASTRO DE USUARIOS|________|\n");
+  printf("|                                      |\n");
+  printf("|     1-Incluir usuario;               |\n");
+  printf("|                                      |\n");
+  printf("|     2-Editar usuario;                |\n");
+  printf("|                                      |\n");
+  printf("|     3-Excluir usuario;               |\n");
+  printf("|                                      |\n");
+  printf("|     4-Buscar usuario pelo ID;        |\n");
+  printf("|                                      |\n");
+  printf("|     5-Buscar usuario pelo email;     |\n");
+  printf("|                                      |\n");
+  printf("|     6-Imprimir usuarios;             |\n");
+  printf("|                                      |\n");
+  printf("|     7-Fazer backup;                  |\n");
+  printf("|                                      |\n");
+  printf("|     8-Restaurar dados;               |\n");
+  printf("|______________________________________|\n");
+  printf("  Escolha uma opcao: ");
 }
 
-void incluirUsuario(){
+struct cadastro incluirUsuario(struct cadastro *incluir){
   char repetir, tamanhoEmail[30], vacinado[5];
 
-  if (cad[0].id < 0) {
-    cad[0].id = (cad[0].id * (-1)); // ID ficará positivo
-    printf("Usuario: %i\n", cad[j].id);
-    printf("Digite o nome:\n");
-    fflush(stdin);
-    gets(cad[0].nome);
-    printf("Digite o email:\n");// adicionar Funcao para vericar...
-    gets(cad[0].email);
-    printf("Digite o sexo (Feminino, Masculino, Nao declarar):\n"); // adicionar Funcao para vericar...
-    fflush(stdin);
-    gets(cad[0].sexo);
-    printf("Digite o estado:\n");
-    fflush(stdin);
-    gets(cad[0].end.estado);
-    printf("Digite a cidade:\n");
-    fflush(stdin);
-    gets(cad[0].end.cidade);
-    printf("Digite a rua:\n");
-    fflush(stdin);
-    gets(cad[0].end.rua);
-    printf("Digite o cep:\n");
-    fflush(stdin);
-    gets(cad[0].end.cep);
-    printf("Digite a altura:\n"); // adicionar Funcao para vericar...
-    scanf("%lf", &cad[0].altura);
-    printf("Ja vacinou?(Sim ou Nao)\n");// adicionar Funcao para retornar o booliano...
-    gets(vacinado);
-    system("cls");
+  if(incluir[0].id<0){
+    incluir[0].id=incluir[0].id*(-1);
   }
   else{
-    cad[j].id = rand() % 1000;
-    printf("Usuario: %i\n", cad[j].id);
-    printf("Digite o nome:\n");
-    fflush(stdin);
-    gets(cad[j].nome);
-    printf("Digite o email:\n");// adicionar Funcao para vericar...
-    gets(cad[j].email);
-    printf("Digite o sexo (Feminino, Masculino, Nao declarar):\n"); // adicionar Funcao para vericar...
-    fflush(stdin);
-    gets(cad[j].sexo);
-    printf("Digite o estado:\n");
-    fflush(stdin);
-    gets(cad[j].end.estado);
-    printf("Digite a cidade:\n");
-    fflush(stdin);
-    gets(cad[j].end.cidade);
-    printf("Digite a rua:\n");
-    fflush(stdin);
-    gets(cad[j].end.rua);
-    printf("Digite o cep:\n");
-    fflush(stdin);
-    gets(cad[j].end.cep);
-    printf("Digite a altura:\n"); // adicionar Funcao para vericar...
-    scanf("%lf", &cad[j].altura);
-    printf("Ja vacinou?(Sim ou Nao)\n");// adicionar Funcao para retornar o booliano...
-    gets(vacinado);
-    system("cls");
-    j++;
+  incluir.id = rand() % 1000;
   }
+  printf("Usuario: %i\n", incluir.id);
+  printf("Digite o nome:\n");
+  fflush(stdin);
+  gets(incluir.nome);
+  printf("Digite o email:\n");// adicionar Funcao para vericar...
+  gets(incluir.email);
+  printf("Digite o sexo (Feminino, Masculino, Nao declarar):\n"); // adicionar Funcao para vericar...
+  fflush(stdin);
+  gets(incluir.sexo);
+  printf("Digite o estado:\n");
+  fflush(stdin);
+  gets(incluir.end.estado);
+  printf("Digite a cidade:\n");
+  fflush(stdin);
+  gets(incluir.end.cidade);
+  printf("Digite a rua:\n");
+  fflush(stdin);
+  gets(incluir.end.rua);
+  printf("Digite o cep:\n");
+  fflush(stdin);
+  gets(incluir.end.cep);
+  printf("Digite a altura:\n"); // adicionar Funcao para vericar...
+  scanf("%lf", &incluir.altura);
+  printf("Ja vacinou?(Sim ou Nao)\n");// adicionar Funcao para retornar o booliano...
+  gets(vacinado);
+  system("cls");
+  return *incluir;
 }
 
-void imprimir(){
+
+void imprimir(struct cadastro *cad){
 
   for (int i=0; i < j; i++){
     if (cad[i].id > 0) { // Nao imprimi os cadastrados excluidos
-      printf("Usuario: %i\n", cad[i].id);
-      printf("Nome: %s\n",cad[i].nome);
-      printf("Email: %s\n", cad[i].email);
-      printf("Sexo: %s\n", cad[i].sexo);
-      printf("estado: %s\n",cad[i].end.estado);
-      printf("estado: %s\n",cad[i].end.cidade);
-      printf("estado: %s\n",cad[i].end.rua);
-      printf("estado: %s\n\n",cad[i].end.cep);
+      printf("         Usuario: %i\n", cad[i].id);
+      printf("         Nome: %s\n",cad[i].nome);
+      printf("         Email: %s\n", cad[i].email);
+      printf("         Sexo: %s\n", cad[i].sexo);
+      printf("         Estado: %s\n",cad[i].end.estado);
+      printf("         Cidade: %s\n",cad[i].end.cidade);
+      printf("         Rua: %s\n",cad[i].end.rua);
+      printf("         CEP: %s\n",cad[i].end.cep);
+      printf("         Altura: %.2f\n",cad[i].altura);
+      printf("         Vacinado: \n\n");
+      printf("--------------------------------------------\n");
     }
   }
   system("pause");
   system("cls");
 }
 
-void buscarEmail() {
+void buscarEmail(struct cadastro *cad) {
   char emailBusca[30],i=0;
   char repetir,sair;
   printf("Digite o email: \n");
@@ -196,7 +192,7 @@ void buscarEmail() {
   system("cls");
 }
 
-void BuscarID(){
+void BuscarID(struct cadastro *cad){
   int esquerda, direita, meio, idBusca, qtdCadastros, k, i, id_n_encontrado;
   struct cadastro aux_cad;
   qtdCadastros=j;
@@ -254,7 +250,7 @@ void BuscarID(){
   system("cls");
 }
 
-void editar(){
+void editar(struct cadastro *cad){
   int idBusca,i;
   char vacinado[5];
   printf("Digite o Id\n");
@@ -292,7 +288,7 @@ void editar(){
   system("cls");
 }
 
-void Excluir(){
+void Excluir(struct cadastro *cad){
   int idBusca, l=0, qtdCadastros, k, i, aux;
   char auxS[10], msg_n_encontrado;
   struct cadastro aux_cad;
@@ -332,4 +328,20 @@ void Excluir(){
   msg_n_encontrado='s';
   system("pause");
   system("cls");
+}
+
+char* validarSexo(char*sexoValido){
+  char repetir;
+  do {
+    printf("Digite o sexo (Feminino, Masculino, Nao declarar):\n");
+    fflush(stdin);
+    gets(sexoValido);
+    if ((stricmp(sexoValido,"Feminino")==0) || (stricmp(sexoValido,"Masculino")==0) || (stricmp(sexoValido,"Nao declarar")==0))
+      break;
+    else{
+      printf("Sexo Incorreto!!\n");
+        repetir='S';
+    }
+  } while(repetir=='S');
+  return sexoValido;
 }
