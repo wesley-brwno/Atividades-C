@@ -38,10 +38,10 @@ int main() {
   } while(continuar!=2);
 
   for(int j=0; j<k; j++){
-    printf("Nome:  %s\n", alu[1][j].nome);
-    printf("Serie:  %i\n", alu[1][j].nMatricula);
+    printf("Nome:   %s\n", alu[1][j].nome);
+    printf("Serie:  %s\n", alu[1][j].nMatricula);
     printf("Turma:  %c\n", dad[1][j].turma);
-    printf("Ano:  s%\n", alu[1][j].anoNascimento);
+    printf("Ano:    %s\n", dad[1][j].anoNascimento);
 
   }
 
