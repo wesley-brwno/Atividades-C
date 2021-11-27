@@ -18,6 +18,8 @@ void incluir(struct tNo **lst, struct tNo *n); // Ponteiro sendo passado por ref
 void listar(struct tNo *); // Nao é necesario declarar struct +-
 void destruir(struct tNo **lst);
 struct tNo *consultar(struct tNo *, int);
+void excluir(struct tNo **, struct tNo *n);
+
 
 int main(void){
   int opcao, codigo, i, achei;
@@ -75,6 +77,18 @@ int main(void){
         else
           printf("Codigo nao encontrado! \n");
       break;
+      case 5:
+          printf("\n\n ** Exclusao ***\n\n");
+          printf("Digite o codigo...: ");
+          scanf("%i", &codigo);
+
+          p = consultar(produtos, codigo);
+          if (p != NULL){
+            excluir(&produtos, p);
+          }
+          else
+            printf("Codigo nao encontrado! \n");
+      break;
     }
   } while(opcao != 0);
 
@@ -89,6 +103,7 @@ int menu(void){
   printf("2. Listagem\n");
   printf("3. Consulta\n");
   printf("4. Alteracao\n");
+  printf("5. Exclusao\n");
   printf("0. Sair\n\n");
   printf("Escolha sua opcao: ");
   scanf("%d", &op);
@@ -126,4 +141,17 @@ struct tNo *consultar (struct tNo *lst, int cod){
     p = p->prox;
   }
   return NULL;
+}
+
+void excluir(struct tNo **lst, struct tNo *vitima){
+  struct tNo *p = *lst;
+
+  if((*lst)==vitima) // inicio
+    (*lst) = vitima->prox;
+  else{ // Não incio
+    while (p->prox != vitima)
+      p = p->prox;
+  p->prox = vitima->prox;
+  }
+  free(vitima);
 }
