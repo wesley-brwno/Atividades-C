@@ -23,11 +23,12 @@ struct no{
 void Menu();
 void incluir(struct no **lista, struct no *novo);
 void imprimir (struct no *imprimir);
-struct no *editar(struct no *lista);
 void buscarID (struct no *imprimir);
 void fazerBackup (struct no *lista, struct no **backup, struct no *novo);
-void restaurar (struct no *backup, struct no **lista, struct no *novo);
-void excluir(struct no **lista, struct no *vitima);
+//void restaurar (struct no *backup, struct no **lista, struct no *novo);
+void excluir(struct no **lista, struct no *excluir);
+struct no *editar(struct no *lista);
+struct no *editar2(struct no *editar);
 
 
 
@@ -47,12 +48,7 @@ int main(void) {
       case 2:
         edicao=editar(lista);
         if(edicao != NULL){
-          printf("Digite o nome: ");
-          fflush(stdin);
-          gets(edicao->cad.nome);
-          printf("Digite o email: ");
-          fflush(stdin);
-          gets(edicao->cad.email);
+          edicao=editar2(edicao);
         }
       break;
       case 3:
@@ -172,18 +168,28 @@ struct no *editar(struct no *lista){
   return NULL;
 }
 
-void excluir(struct no **lista, struct no *vitima){
+struct no *editar2(struct no *editar){
+  printf("Digite o nome: ");
+  fflush(stdin);
+  gets(editar->cad.nome);
+  printf("Digite o email: ");
+  fflush(stdin);
+  gets(editar->cad.email);
+  return editar;
+}
+
+void excluir(struct no **lista, struct no *excluir){
   struct no *p = *lista;
-  if (*lista==vitima){
-    *lista= vitima->prox;
+  if (*lista==excluir){
+    *lista= excluir->prox;
   }
   else{
-    while(p->prox !=vitima){
+    while(p->prox !=excluir){
     p = p->prox;
   }
-    p->prox = vitima->prox;
+    p->prox = excluir->prox;
   }
-  free(vitima);
+  free(excluir);
 }
 
 void fazerBackup (struct no *lista, struct no **backup, struct no *novo){
