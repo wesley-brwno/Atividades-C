@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Calcular media aritimetica e ponderadas;
+// Entrada : notas;
+// Saída : Media aritimetica e medias ponderadas das notas;
 #include <stdio.h>
 #include <stdlib.h>
 int main(void) {

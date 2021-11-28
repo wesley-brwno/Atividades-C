@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Organizar peso em ordem crescente;
+// Entrada : Pesos;
+// Saída : Peso em ordem crescente;
 #include <stdio.h>
 
 void ordenar(float *peso){

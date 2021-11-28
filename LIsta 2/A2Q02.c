@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Calcular potencias;
+// Entrada : Numero inteiro e numero real;
+// Saída : Resultado do numero real elevado ao inteiro;
 #include <stdio.h>
 #include <stdlib.h>
 int main (void){

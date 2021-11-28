@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Converter unidades de medidas;
+// Entrada : Peso em quilos;
+// Saída : Peso em gramas e toneladas;
 #include <stdio.h>
 
 float leValidaPeso(float peso){

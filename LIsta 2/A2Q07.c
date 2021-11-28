@@ -1,8 +1,7 @@
-/*Elabore  dois sub-algoritmos,  além  do  algoritmo  principal,
-  um  que  calcule  duas  operações aritméticas  consecutivas  sobre  três  valores  inteiros  e  dois  operadores,
-    lidos  no  algoritmo principal e outro que verifique se o resultado final das operaçõesproduzirá um número parou ímpar.
-Os resultados devem ser apresentados no algoritmo principalExemplo (5 + 3 * 2 = ? */
-
+// Sintese
+// Objetivo : Apresentar media aritmetica de alturas;
+// Entrada : Alturas;
+// Saída : Media das alturas;
 #include <stdio.h>
 #include <stdlib.h>
 

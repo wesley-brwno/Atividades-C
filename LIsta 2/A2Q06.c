@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Apresentar procentagem de alunos aprovados e reprovados;
+// Entrada : Quantidade de alunos, quantidade de aprovados e reprovados;
+// Saída : Porcentagem de aprovados e reprovados;
 #include <stdio.h>
 #include <stdlib.h>
 

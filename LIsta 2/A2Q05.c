@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Classificar organizacao populacional;
+// Entrada : Nome da organizacao populacional e quantidade de habitantes;
+// Saída : Tipo de organizacao populacional;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

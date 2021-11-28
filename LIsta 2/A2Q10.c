@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Calcular media de notas;
+// Entrada : Duas notas;
+// Saída : Media e situação(aprovado ou reprovado).
 #include <stdio.h>
 
 void situacao(float media){
