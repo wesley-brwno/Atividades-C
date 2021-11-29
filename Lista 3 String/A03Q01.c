@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Ler nomes de pessoas e apresentar em letras maiúsculas ou minúsculas;
+// Entrada : Nome e resto do nome;
+// Saída : Nome, maiúsculo ou minúsculo;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

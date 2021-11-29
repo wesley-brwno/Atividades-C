@@ -1,8 +1,3 @@
-/*Defina uma estrutura em C para armazenar dados de um veículo
-(Marca, modelo, cor, quantidade  de  portas,motorização),
-crie  uma  função  para  armazenar  os  dados  de  10 veículos,
-outra  para  mostrar  os  dados  armazenados,
-a  função  main()deve  conter  um pequeno menu para chamar as funções criadas*/
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,3 +1,7 @@
+// Sintese
+// Objetivo : Receber nome e idade de um aluno;
+// Entrada : Idade e nome;
+// Saída : Idade e nome;
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,5 +1,7 @@
-/*Desenvolva um  programa  em  C  utilizando  registro  que  permita  a  entrada  de  nome,
- endereço e telefone de 3 pessoas e os imprima ao final*/
+// Sintese
+// Objetivo : Imprimir nome, endereco e telefone de 3 pessoas;
+// Entrada : Nome, endereço e telefone;
+// Saída : Nome, endereço e telefone;
  #include <stdio.h>
  #include <stdlib.h>
  struct informacoes {

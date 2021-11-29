@@ -1,8 +1,10 @@
+// Sintese
+// Objetivo : Receber nomes e mostrar seus tamanhos;
+// Entrada : 5 nomes;
+// Saída : Tamnaho do nome;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
 
 int main() {
   char nome[5][10], sobrenome[5][10];
