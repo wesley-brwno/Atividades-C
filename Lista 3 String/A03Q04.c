@@ -19,7 +19,7 @@ int main() {
     texto[i]=tolower(texto[i]);
   }
   for(int k=0;texto[k]!= '\0'; k++ ) {
-   if((texto[k] ==' ') && (texto[k+1] != ' ')) {
+   if((texto[k] == ' ') && (texto[k+1] != ' ')) {
       qtdPalavras++;
    }
   }
