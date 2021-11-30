@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <Windows.h>
-//  Os  membros  devem  armazenar  o  nome,  o endereço,  o  preço  médio  e  o  tipo  de  comida.
+
 struct restaurante {
   char nome[15], endereco[20], tipo_comida[15];
   float precoMedio;

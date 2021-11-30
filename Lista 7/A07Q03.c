@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <Windows.h>
-//da  o  nome  de uma comida, o  peso  de  uma  porção  e o  número  de calorias
 
 struct dieta{
   char nome[15];

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 struct produtos{
   char nome[10];
@@ -8,10 +8,15 @@ struct produtos{
   int baixas;
 };
 
-int main (void){
+struct no{
   struct produtos prod[4][6];
+  struct no *prox;
+};
 
-  for( int i=0; i<1; i++){
+void incluir(struct no **lista, struct no *novo){
+  novo = malloc (sizeof (struct no));
+
+  for( int i=0; i<4; i++){
     for (int j=0; j<6; j++){
       switch (j) {
         case 0: printf("Segunda |");break;
@@ -23,19 +28,37 @@ int main (void){
       }
       printf("\n Digite o produto: ");
       fflush(stdin);
-      gets(prod[i][j].nome);
+      gets(novo->prod[i][j].nome);
       printf(" Digite o preco: ");
-      scanf("%f", &prod[i][j].preco);
+      scanf("%f", &novo->prod[i][j].preco);
       printf(" Digite as baixas: ");
-      scanf("%i", &prod[i][j].baixas);
+      scanf("%i", &novo->prod[i][j].baixas);
     }
   }
-  for( int i=0; i<1; i++){
-    for (int j=0; j<6; j++){
-      printf("%s\n%.2f\n%i\t", prod[i][j].nome, prod[i][j].preco, prod[i][j].baixas);
 
+  novo->prox = *lista;
+  *lista = novo;
+}
+
+int main (void){
+  struct no *novo, *lista, *aux;
+
+  int verificar;
+  char produto[10];
+  verificar=0;
+
+  incluir(&lista,novo);
+  aux=lista;
+
+  for( int i=0; i<4; i++){
+    for (int j=0; j<6; j++){
+      if ((aux->prod[i][j].baixas) > verificar) {
+          verificar=aux->prod[i][j].baixas;
+        strcpy(produto, aux->prod[i][j].nome);
+      }
     }
   }
+  printf("O produto com mais baixa foi: %s\n com %i baixas", produto, verificar);
 
   return 0;
 }

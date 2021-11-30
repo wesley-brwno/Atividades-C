@@ -190,7 +190,7 @@ struct no *editar(struct no *lista){
   int chassi;
   char repetir='N';
 
-  while (aux != NULL && repetir !='S') {
+  while (aux != NULL && repetir != 'S') {
     printf("\nDigite o chassi para troca de proprietario: \n");
     scanf("%i", &chassi);
     if (aux->dados.chassi==chassi) {
